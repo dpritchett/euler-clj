@@ -5,6 +5,8 @@
 ;;
 ;; Tools used are VimClojure plus the cljr repl with liberal use of (load-file "euler.clj")
 
+(in-ns 'euler)
+
 (defn reload
   "Reload this file"
   []
@@ -342,4 +344,10 @@
   (apply str (take 10 (str (reduce +
                                    (map #(BigInteger. %)
                                         (seq
-                                          (.split *input-13* "\\s+"))))))))
+					(.split *input-13* "\\s+"))))))))
+
+(defn problem-14
+  "doc string"
+  []
+   '(1 2 3)
+  )
