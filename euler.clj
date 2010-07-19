@@ -56,8 +56,6 @@
                                        (< sqrt-n i)      true
                                        :else             (recur (+ i 2)))))))
 
-(def memprime (memoize prime?))
-
 (defn problem-3
   "Calculate the largest prime factor of [n]"
   [n]
@@ -132,8 +130,7 @@
 (defn primes
   "Lazy sequence of prime numbers.  v0 is very naive"
   []
-  (filter memprime (iterate #(inc %) 2)))
-
+  (filter prime? (iterate #(inc %) 2)))
 
 (defn problem-10
   "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
