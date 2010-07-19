@@ -1,6 +1,10 @@
 ;; Many of these are revised solutions copied or borrowed from
 ;; http://clojure-euler.wikispaces.com
 
+;; Problems are found at projecteuler.net
+;;
+;; Tools used are VimClojure plus the cljr repl with liberal use of (load-file "euler.clj")
+
 (defn reload
   "Reload this file"
   []
