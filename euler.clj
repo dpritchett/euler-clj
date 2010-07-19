@@ -53,13 +53,7 @@
                                    (loop [i 3]
                                      (cond
                                        (-divisible? n i)  false
-                                       (< sqrt-n i)       true
-                                       :else              (recur (+ i 2))
-                                       )
-                                     )
-                                   )
-        )
-        ) 
+                                       (< sqrt-n i)       true)))))
 
 (defn problem-3
   "Calculate the largest prime factor of [n]"
