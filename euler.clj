@@ -38,7 +38,7 @@
 		#(< % 4e6)
 		(fibos)))))
 
-(defn -divisible?
+(defn divisible?
       "Determine whether or not f is a factor of n"
       [n f]
       (zero? (rem n f)))
@@ -48,11 +48,11 @@
       [n]
       (cond
 	(or (= 2 n) (= 3 n))	        true
-	(or (-divisible? n 2) (< n 2))	false
+	(or (divisible? n 2) (< n 2))	false
 	:else                           (let [sqrt-n (Math/sqrt n)]
                                    (loop [i 3]
                                      (cond
-                                       (-divisible? n i)  false
+                                       (divisible? n i)  false
                                        (< sqrt-n i)       true)))))
 
 (defn problem-3
@@ -71,7 +71,7 @@
                                           y (range 100 (+ x 1))]
                                       (* x y)))))
 
-(defn first-uneven-divisor
+(defn first-unevendivisor
   [n]
   (first (filter pos?
                (seq (for [x (iterate #(inc %) 1)]
@@ -81,7 +81,7 @@
 (defn problem-5
   []
 (first 
-  (filter #(> (first-uneven-divisor %) 20)
+  (filter #(> (first-unevendivisor %) 20)
           (iterate #(+ 10 %) 10))))
 
 (defn sum-of-squares [n] (reduce + (map #(* % %) (range 1 (+ 1 n)))))
