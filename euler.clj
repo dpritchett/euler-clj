@@ -8,7 +8,7 @@
 (defn reload
   "Reload this file"
   []
-  (load-file "/home/daniel/myapps/euler.clj")
+  (load-file "/home/daniel/myapps/euler-clj/euler.clj")
   )
 
 (defn problem-1
@@ -53,7 +53,10 @@
                                    (loop [i 3]
                                      (cond
                                        (divisible? n i)  false
-                                       (< sqrt-n i)       true)))))
+                                       (< sqrt-n i)      true
+                                       :else             (recur (+ i 2)))))))
+
+(def memprime (memoize prime?))
 
 (defn problem-3
   "Calculate the largest prime factor of [n]"
@@ -125,4 +128,17 @@
 (defn problem-9-solver
   []
   (reduce * (first (filter #(= 1000 (reduce + %)) p9-1000s))))
+
+(defn primes
+  "Lazy sequence of prime numbers.  v0 is very naive"
+  []
+  (filter memprime (iterate #(inc %) 2)))
+
+
+(defn problem-10
+  "The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+  Find the sum of all the primes below two million."
+  []
+  (reduce + (take-while #(> 2E6 %) (primes))))
 
