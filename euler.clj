@@ -8,7 +8,7 @@
 (defn reload
   "Reload this file"
   []
-  (load-file "/home/daniel/myapps/euler-clj/euler.clj")
+  (load-file "euler.clj")
   )
 
 (defn problem-1
