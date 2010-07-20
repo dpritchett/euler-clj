@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -am $ 
+git commit -am '$1' 
 git push origin master
