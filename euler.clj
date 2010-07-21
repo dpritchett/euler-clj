@@ -162,3 +162,63 @@
   01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48")
 
 (def *input-11* (partition 20 (map #(Integer. %) (seq (.split *input-11* "\\s+")))))
+
+;;accessor
+(defn by-coords [x y] (nth (nth *input-11* y '()) x 0))
+
+(defn diag-rfourple [x y] (reverse (conj '() (by-coords x y) (by-coords (+ x 1) (+ y 1)) (by-coords (+ x 2) (+ y 2)) (by-coords (+ x 3) (+ y 3)))))
+
+(defn diag-lfourple [x y] (reverse (conj '() (by-coords x y) (by-coords (- x 1) (+ y 1)) (by-coords (- x 2) (+ y 2)) (by-coords (- x 3) (+ y 3)))))
+
+;; Max product of four consecutive numbers from the first row
+(apply max (map #(reduce * %) (partition 4 1 (first *input-11*))))
+
+;; Vertical tuples of 4
+(def *input-11-vert-tuples*
+  (map #(partition 4 1 %)
+       (for [x (range 0 20)] (map #(nth % x) *input-11*))))
+
+;; Diagonal tuples of 4
+(def rdiag-max-11
+  (apply max 
+         (for [x (range 0 20) y (range 0 20)]
+           (reduce * (diag-rfourple x y)))))
+
+;; Diagonal tuples of 4
+(def ldiag-max-11
+  (apply max 
+         (for [x (range 0 20) y (range 0 20)]
+           (reduce * (diag-lfourple x y)))))
+
+;; max product of vertical tuples of 4
+(def vert-max-11
+  (apply max
+       (map #(apply max %)
+            ((fn [i]
+               (map (fn [j] (map #(reduce * %) j)) i))
+               *input-11-vert-tuples*))))
+
+;; max product of horizontal tuples of 4
+(def horiz-max-11
+  (apply max
+       (map #(apply max %)
+            ((fn [i]
+               (map (fn [j] (map #(reduce * %) j)) i))
+               (map #(partition 4 1 %) *input-11*)))))
+
+(defn problem-11
+  []
+  (max horiz-max-11 ldiag-max-11 vert-max-11 rdiag-max-11)
+  )
+
+(defn triangles
+  "lazy seq of triangle nums, based on cgrand's fibos alg used above"
+  []
+  (map first
+       (iterate
+         (fn [[t n]] [(+ t n) (inc n)]) [1 2])))
+
+(defn triangles
+  "chouser's improved version of above"
+  []
+  (reductions + (iterate inc 1)))
