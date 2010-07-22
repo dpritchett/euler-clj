@@ -1,3 +1,4 @@
+(ns euler-clj.core)
 ;; Many of these are revised solutions copied or borrowed from
 ;; http://clojure-euler.wikispaces.com
 
@@ -5,7 +6,7 @@
 ;;
 ;; Tools used are VimClojure plus the cljr repl with liberal use of (load-file "euler.clj")
 
-(ns 'euler)
+;;(ns 'euler)
 
 (defn reload
   "Reload this file"
@@ -359,5 +360,4 @@
 
   Which starting number, under one million, produces the longest chain?"
   []
-   '(1 2 3)
-  )
+   '(1 2 3))

@@ -5,7 +5,8 @@
 ;;
 ;; Tools used are VimClojure plus the cljr repl with liberal use of (load-file "euler.clj")
 
-(ns 'euler)
+
+(in-ns 'euler)
 
 (defn reload
   "Reload this file"
