@@ -360,4 +360,11 @@
 
   Which starting number, under one million, produces the longest chain?"
   []
-   '(1 2 3))
+  '(1 2 3))
+
+
+(defn problem-15
+  "messing around with viper in my .clj editor and no viper in my slime repl"
+  []
+  (println "Hey there!")
+  )
