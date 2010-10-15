@@ -1,4 +1,6 @@
-(ns euler-clj.core)
+(ns euler-clj.core
+  (:require clojure.contrib.def)) ;; defn-memo
+
 ;; Many of these are revised solutions copied or borrowed from
 ;; http://clojure-euler.wikispaces.com
 
@@ -362,11 +364,16 @@
   []
   '(1 2 3))
 
+(clojure.contrib.def/defn-memo p14
+                   ([x] (p14 x 1))
+                   ([x y]
+                   (if (= 1 x) y 
+                     (if (even? x)
+                       (p14 (/ x 2) (inc y))
+                       (p14 (inc (* 3 x)) (inc y))))))
 
 (defn problem-15
   "messing around with viper in my .clj editor and no viper in my slime repl"
   []
   (println "Hey there!")
   )
-
-(problem-15)
