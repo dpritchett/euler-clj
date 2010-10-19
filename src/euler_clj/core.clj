@@ -369,17 +369,16 @@
   It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
 
   Which starting number, under one million, produces the longest chain?"
- ([] (solve-14 1 1))
-  ([curr best]
-     (loop [current curr bestest best]
-       (if (= current 1000000)
-         bestest
-         (recur (inc current)
-                (if (> (p14 current) (p14 bestest))
-                  current
-                  bestest))))))
-                        
-                       
+  []
+  (loop [current 1 best 1]
+    (if (= current 1000000)
+      best
+      (recur (inc current)
+             (if (> (p14 current) (p14 best))
+               current
+               best)))))
+
+
 (defn problem-15
   "messing around with viper in my .clj editor and no viper in my slime repl"
   []
