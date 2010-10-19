@@ -350,14 +350,14 @@
 					(.split *input-13* "\\s+"))))))))
 
 (clojure.contrib.def/defn-memo p14
-                  ([x] (p14 x 1))
-                   ([x y]
-                   (if (= 1 x) y 
-                     (if (even? x)
-                       (p14 (/ x 2) (inc y))
-                       (p14 (inc (* 3 x)) (inc y))))))
+                  ([n] (p14 n 1))
+                   ([n counter]
+                   (if (= 1 n) counter 
+                     (if (even? n)
+                       (p14 (/ n 2) (inc counter))
+                       (p14 (inc (* 3 n)) (inc counter))))))
 
-(defn solve-14
+(defn problem-14
   "The following iterative sequence is defined for the set of positive integers:
 
   n  n/2 (n is even)
@@ -378,9 +378,8 @@
                current
                best)))))
 
-
 (defn problem-15
-  "messing around with viper in my .clj editor and no viper in my slime repl"
+  "Starting in the top left corner of a 22 grid, there are 6 routes (without backtracking) to the bottom right corner. How many routes are there through a 2020 grid?"
   []
   (println "Hey there!")
   )
