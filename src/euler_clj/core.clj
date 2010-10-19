@@ -349,7 +349,15 @@
                                         (seq
 					(.split *input-13* "\\s+"))))))))
 
-(defn problem-14
+(clojure.contrib.def/defn-memo p14
+                  ([x] (p14 x 1))
+                   ([x y]
+                   (if (= 1 x) y 
+                     (if (even? x)
+                       (p14 (/ x 2) (inc y))
+                       (p14 (inc (* 3 x)) (inc y))))))
+
+(defn solve-14
   "The following iterative sequence is defined for the set of positive integers:
 
   n  n/2 (n is even)
@@ -361,17 +369,17 @@
   It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
 
   Which starting number, under one million, produces the longest chain?"
-  []
-  '(1 2 3))
-
-(clojure.contrib.def/defn-memo p14
-                   ([x] (p14 x 1))
-                   ([x y]
-                   (if (= 1 x) y 
-                     (if (even? x)
-                       (p14 (/ x 2) (inc y))
-                       (p14 (inc (* 3 x)) (inc y))))))
-
+ ([] (solve-14 1 1))
+  ([curr best]
+     (loop [current curr bestest best]
+       (if (= current 1000000)
+         bestest
+         (recur (inc current)
+                (if (> (p14 current) (p14 bestest))
+                  current
+                  bestest))))))
+                        
+                       
 (defn problem-15
   "messing around with viper in my .clj editor and no viper in my slime repl"
   []
